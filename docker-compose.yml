@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  quant_env:
+    build: .
+    container_name: quant_engine_x
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/app
