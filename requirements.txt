@@ -9,6 +9,11 @@ scipy==1.12.0
 
 #ML
 scikit-learn==1.4.1.post1
+hmmlearn==0.3.2
+
+#Dados e visualizacao
+yfinance==0.2.40
+matplotlib==3.8.4
 
 #Ambiente Jupyter
-jupyterlab==4.1.5
+]upyterlab==4.1.5

@@ -1,0 +1,52 @@
+bloco,uso_ou_coluna_canonica,serie,fonte,codigo,frequencia,inicio_aprox,custo,defasagem_pit,prioridade,observacao
+mercado_derivativos,eq_dm,MSCI ACWI (ETF),Yahoo Finance,ACWI,diaria,2008,gratuito,D+0 fechamento,P1,"Para historia longa pre-2008: SPY (1993) ou ^GSPC"
+mercado_derivativos,eq_em,iShares MSCI Emerging Markets,Yahoo Finance,EEM,diaria,2003,gratuito,D+0,P1,"Alternativa: VWO"
+macro_juros,bond_gov,iShares 7-10Y Treasury,Yahoo Finance,IEF,diaria,2002,gratuito,D+0,P1,"TLT (20Y+) como complemento de duration"
+credito_liquidez,credit_hy,iShares iBoxx High Yield,Yahoo Finance,HYG,diaria,2007,gratuito,D+0,P1,"JNK como redundancia"
+credito_liquidez,credit_ig,iShares iBoxx Investment Grade,Yahoo Finance,LQD,diaria,2002,gratuito,D+0,P1,
+fx_refugio,fx_dxy,Indice dolar DXY,Yahoo Finance,DX-Y.NYB,diaria,1971,gratuito,D+0,P1,"Alternativa FRED: DTWEXBGS (dolar amplo, 2006+)"
+fx_refugio,gold,SPDR Gold Shares,Yahoo Finance,GLD,diaria,2004,gratuito,D+0,P1,"Ou futuro GC=F"
+macro_juros,oil,Petroleo WTI,Yahoo Finance,CL=F,diaria,1983,gratuito,D+0,P1,"Preferir o futuro ao USO (distorcao de rolagem)"
+mercado_derivativos,vix,CBOE VIX,Yahoo Finance / FRED,^VIX / VIXCLS,diaria,1990,gratuito,D+0 / D+1,P1,
+noticias_geopolitica,gpr,GPR diario (Caldara-Iacoviello),matteoiacoviello.com,GPRD,diaria,1985,gratuito,"arquivo atualizado ~mensalmente: ATENCAO PIT",P1,"Baixar data_gpr_daily; em producao usar a data de atualizacao do arquivo"
+mercado_derivativos,move (nova coluna),ICE BofA MOVE (vol de Treasuries),Yahoo Finance,^MOVE,diaria,2002,gratuito,D+0,P2,"O termometro do choque de juros que o VIX nao ve"
+mercado_derivativos,estrutura a termo de vol,CBOE VIX 3 meses,Yahoo Finance,^VIX3M,diaria,2007,gratuito,D+0,P2,"Inversao VIX/VIX3M = estresse agudo"
+mercado_derivativos,cauda,CBOE SKEW,Yahoo Finance,^SKEW,diaria,1990,gratuito,D+0,P2,
+macro_juros,curva de juros,Treasury 2Y / 10Y / inclinacao,FRED,DGS2 / DGS10 / T10Y2Y,diaria,1962-1976,gratuito,D+1 (~16h ET),P2,
+macro_juros,inflacao implicita,Breakeven 10Y e 5Y,FRED,T10YIE / T5YIE,diaria,2003,gratuito,D+1,P2,
+credito_liquidez,oas_hy (nova coluna),ICE BofA US High Yield OAS,FRED,BAMLH0A0HYM2,diaria,1996,gratuito,D+1,P2,"Substitui o proxy de retorno HYG-IEF por spread direto"
+credito_liquidez,oas_ig (nova coluna),ICE BofA US Corporate OAS,FRED,BAMLC0A0CM,diaria,1996,gratuito,D+1,P2,
+credito_liquidez,oas_em,Familia ICE BofA EM no FRED,FRED,ex.: BAMLEMHBHYCRPIOAS,diaria,1998,gratuito,D+1,P2,"Confirmar o codigo da subfamilia desejada no FRED"
+credito_liquidez,funding,SOFR / EFFR / IORB (spreads),FRED,SOFR / EFFR / IORB,diaria,2018 / 1954 / 2021,gratuito,D+1 manha,P2,"Proxy gratuito de aperto de funding; TED foi descontinuada em 2022"
+fx_refugio,em_fx (nova coluna),Cesta FX emergentes (BRL MXN ZAR TRY INR KRW),Yahoo Finance,USDBRL=X etc.,diaria,2003,gratuito,D+0,P2,"Construir indice proprio igual-ponderado de depreciacao"
+fx_refugio,safe havens,Iene e franco suico,Yahoo Finance,JPY=X / CHF=X,diaria,2003,gratuito,D+0,P2,
+validacao_benchmark,referencia externa,OFR Financial Stress Index,financialresearch.gov,OFR FSI,diaria,2000,gratuito,D+1,P2,"Benchmark diario para validar o GMASS (correlacao esperada alta)"
+validacao_benchmark,referencia externa,Chicago Fed NFCI,FRED,NFCI,semanal,1971,gratuito,quarta com ~1 semana de defasagem,P2,
+validacao_benchmark,referencia externa,St. Louis Fed FSI,FRED,STLFSI4,semanal,1993,gratuito,quinta,P2,
+noticias_geopolitica,epu,Daily News EPU (EUA),policyuncertainty.com,Daily News EPU,diaria,1985,gratuito,~D+1,P2,"Complemento do GPR: incerteza de POLITICA ECONOMICA"
+gabarito_validacao,rotulos,Base de crises ECB/ESRB,esrb.europa.eu,planilha da European financial crises database,por episodio,1970,gratuito,atualizacoes periodicas,P2,"Corrobora o gabarito europeu; usar datas de gatilho, nao duracoes"
+gabarito_validacao,drawdowns,MSCI ACWI indice (validacao lead-lag),Yahoo Finance,ACWI ou ^GSPC,diaria,2008 / 1950s,gratuito,D+0,P2,"Para medir antecedencia da declaracao vs pico do drawdown"
+macro_pit,vintages,ALFRED (vintages de series FRED),alfred.stlouisfed.org,conforme serie,conforme serie,gratuito,-,P2,"A ferramenta canonica de disciplina point-in-time para macro revisada"
+macro_pit,nowcast,Atlanta Fed GDPNow,atlantafed.org,GDPNow,~semanal,2011,gratuito,D+0 na divulgacao,P2,"Registrar o carimbo de cada divulgacao"
+posicionamento,cot (novo bloco),CFTC Commitments of Traders,cftc.gov,COT legacy + disaggregated,semanal,1986,gratuito,"dados de TERCA publicados SEXTA ~15h30 ET (D+3): usar data de publicacao",P3,"O erro PIT mais comum da literatura de posicionamento"
+posicionamento,fluxos,ICI fund flows,ici.org,weekly flows,semanal,2007,gratuito,~D+6,P3,"EPFR e a versao paga e global"
+posicionamento,alavancagem,FINRA margin debt,finra.org,margin statistics,mensal,1997,gratuito,~3-4 semanas,P3,
+posicionamento,sentimento,AAII Investor Sentiment,aaii.com,survey,semanal,1987,gratuito (basico),quinta,P3,
+posicionamento,opcoes,CBOE put/call ratio,cboe.com,volume & put/call,diaria,2006,gratuito,D+0,P3,
+noticias_geopolitica,nlp proprio,GDELT (eventos e tom de noticias),gdeltproject.org,GDELT 2.0,15 min,2015,gratuito,tempo real,P3,"So se quiser construir sentimento proprio; exige engenharia"
+premium_opcional,surpresas macro,Citi Economic Surprise Index,Bloomberg/Refinitiv,CESIUSD e familia,diaria,2003,pago,D+0,P3,"Alternativa gratuita: construir indice proprio de surpresas com ALFRED + calendario"
+premium_opcional,funding fino,FRA-OIS e cross-currency basis,Bloomberg,varios,diaria,-,pago,D+0,P3,"O canal mais ANTECEDENTE de estresse de funding; sem substituto gratuito a altura"
+premium_opcional,cds,CDX IG/HY e iTraxx,S&P Global (Markit)/Bloomberg,varios,diaria,2004,pago,D+0,P3,"Complementa OAS com precificacao de derivativo"
+carteira_universo,perna de caixa / duration curta,iShares 1-3Y Treasury,Yahoo Finance,SHY,diaria,2002,gratuito,D+0,P1,"A perna que RECEBE o risco cortado no vol targeting e no overlay"
+carteira_universo,caixa puro,T-Bills 1-3M (ETF),Yahoo Finance,BIL / SGOV,diaria,2007 / 2020,gratuito,D+0,P1,
+carteira_caixa_rf,taxa livre de risco,T-Bill 3 meses (taxa),FRED,DTB3,diaria,1954,gratuito,D+1,P1,"Para Sharpe, vol targeting e custo de carregamento do caixa"
+carteira_universo,duration longa,iShares 20+Y Treasury,Yahoo Finance,TLT,diaria,2002,gratuito,D+0,P2,"Hedge do choque risk-off classico (flight-to-quality)"
+carteira_universo,inflacao,iShares TIPS,Yahoo Finance,TIP,diaria,2003,gratuito,D+0,P2,"Hedge do choque macro/inflacao - o tipo em que bonds NOMINAIS falham (ver taxonomia)"
+carteira_universo,commodities amplas,Invesco DB Commodity,Yahoo Finance,DBC,diaria,2006,gratuito,D+0,P2,"Hedge do choque geopolitico/energia"
+carteira_universo,credito EM,iShares JPM EM Bonds,Yahoo Finance,EMB,diaria,2007,gratuito,D+0,P2,
+carteira_universo,acoes regionais (opcional),S&P 500 / Europa / Japao,Yahoo Finance,SPY / VGK / EWJ,diaria,1993 / 2005 / 1996,gratuito,D+0,P2,"So se a adaptacao da carteira for regional alem de global"
+carteira_universo,imobiliario global (opcional),SPDR Global Real Estate,Yahoo Finance,RWO,diaria,2008,gratuito,D+0,P3,
+carteira_benchmark,benchmark externo,iShares Core Growth Allocation (60/40),Yahoo Finance,AOR,diaria,2008,gratuito,D+0,P2,"Confere o 60/40 construido internamente"
+carteira_custos,parametro: taxas dos ETFs,Expense ratios,paginas dos emissores (iShares/SPDR/Invesco),-,anual,-,gratuito,-,P2,"Entram como custo de carregamento no backtest"
+carteira_custos,parametro: custo de transacao,Bid-ask medio por ativo,estimado da propria base (ex. Corwin-Schultz) ou vendor,-,diaria,-,gratuito / pago,-,P2,"Comece com 2-5 bps por lado em ETFs liquidos; decisao de comite"
+carteira_futuros,implementacao institucional (opcional),Futuros ES / ZN / ZB / 6E / GC / CL,Yahoo (front month) / Norgate ou CSI (continuos),ES=F ZN=F GC=F etc.,diaria,anos 80-90,gratuito / pago,D+0,P3,"Series continuas back-adjusted exigem construcao propria ou vendor"
